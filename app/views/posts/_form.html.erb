@@ -1,0 +1,31 @@
+<%= form_with(model: @post, local: true) do |s| %>
+
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= s.label :title %>
+    <%= s.text_field :title %>
+
+    <div class="post">
+      <%= s.fields_for :tags do |t| %>
+        <%= render "tag_fields", f: t %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association "タグを追加", s, :tags %>
+      </div>
+    </div>
+    <div class="actions">
+      <%= s.submit %>
+    </div>
+<% end %>
+
+

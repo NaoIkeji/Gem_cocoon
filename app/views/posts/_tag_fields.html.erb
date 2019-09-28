@@ -1,0 +1,19 @@
+<div class="nested-fields">
+	<%= f.label "Tag" %>
+	<%= f.text_field :name %>
+	<%= link_to_remove_association "remove tag", f %>
+
+    <div class="tag">
+		<%= f.fields_for :descriptions do |u| %>
+			<%= render "description_fields", f: u %>
+		<% end %>
+		<div class="links">
+			<%= link_to_add_association "説明を追加", f, :descriptions %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
